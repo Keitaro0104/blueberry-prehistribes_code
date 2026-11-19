@@ -14,7 +14,8 @@ This repo contains **our own analysis notes**, not game files.
 - `task-table.csv` — all 112 villager task codes with per-task table values.
 - `decode_pd0.py`, `decode_ma.py`, `extract_pngs.py` — the Python parsers used for this analysis (our own code).
 - `mods/format/MOD-FORMAT.md` — mod format v0.1 (maps + buildings in readable JSON, units/weapons sketched for v0.2).
-- `mods/example/` — one example map (Green Valley, 40x32) and one example building (Large Hut, a Hut variant), both validated against the format.
+- `mods/example/` — one example map (Green Valley, 40x32) and one example building (Large Hut, a Hut variant), both validated against the format. `mods/example/PROOF.md` records the emulator proof that Green Valley loads and plays in a repacked JAR.
+- `tools/convert_map.py`, `tools/repack_jar.py` — the map encoder and JAR repacker used for that proof (our own code).
 
 ## What's NOT in this repo
 

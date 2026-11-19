@@ -102,6 +102,8 @@ One file per map. `kind` must be `"map"`.
 | `tiles` | array of arrays of integers | yes | `height` rows, each `width` tile IDs, row-major, top row first. Row = y (0 = top), column = x (0 = left). See tile ID rules below. |
 | `spawns` | array of objects | no | Spawn points. Each: `{ "type": 1–5, "row": int, "col": int }`. The tile at that position in `tiles` must be `174 + type` (175–179). Original: `f.aN()` registers tiles 175–179 as map objects, types 1–5, arguments from `/a` record 110 = `[20, 20, 20, 15, 25]`. |
 | `player_start` | object | no | `{ "row": int, "col": int }` — starting cursor position. Must be inside the map and on a walkable tile. Original: `/a` record 150 (spawn cursor per level; q0 is (15, 5) as x,y). |
+
+> **J2ME repack note (proven 2026-11-19):** in the original engine `player_start` is *not* where the camera starts — the camera follows the player's tribe, whose spawn comes from the level's setup table (`/a` record 261). A repacked map must set record 150 to the centroid of the remapped player villagers, or the viewport starts over unseen fog-of-war terrain and renders black. A future Android loader that spawns the tribe at `player_start` can use it for the camera too.
 | `win_lose` | object | yes | See below. |
 | `source_notes` | string | no | Free-text notes on where the values came from. |
 
