@@ -17,6 +17,7 @@ This repo contains **our own analysis notes**, not game files.
 - `mods/example/` — one example map (Green Valley, 40x32) and one example building (Large Hut, a Hut variant), both validated against the format. `mods/example/PROOF.md` records the emulator proof that Green Valley loads and plays in a repacked JAR.
 - `tools/convert_map.py`, `tools/repack_jar.py` — the map encoder and JAR repacker used for that proof (our own code).
 - `tools/patch_unlock.py` — one-byte patch that unlocks Custom Game without completing the tutorial (see `mods/example/UNLOCKED-PROOF.md`).
+- `ANDROID-PORT-PLAN.md` — the Android port plan: libGDX + Kotlin, full touch controls (no D-pad cursor), milestones M1–M6.
 
 ## What's NOT in this repo
 
