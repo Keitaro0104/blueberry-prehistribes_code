@@ -1,35 +1,35 @@
 # blueberry-prehistribes_code
 
-Riset reverse-engineering game J2ME **Prehistoric Tribes** (THQ Wireless / Gear Games, 2008, MIDP-2.0, 240x320) dengan REA + CFR.
+Reverse-engineering research on the J2ME game **Prehistoric Tribes** (THQ Wireless / Gear Games, 2008, MIDP-2.0, 240x320) using REA + CFR.
 
-Repo ini berisi **catatan analisis buatan sendiri**, bukan file game.
+This repo contains **our own analysis notes**, not game files.
 
-## Yang ada di repo ini
+## What's in this repo
 
-- `PETA-SISTEM.md` — peta sistem lengkap dalam Bahasa Indonesia: alur utama, game loop, dunia, bangunan, villager, combat, bahasa, level, save/load, musik, dan yang belum terjawab.
-- `ANALISIS-alur-utama.md` — laporan detail alur utama (start, loading, game loop ±20 tick/detik, input, rendering, musik MIDI).
+- `PETA-SISTEM.md` — a complete system map in English: main flow, game loop, world, buildings, villagers, combat, languages, levels, save/load, music, and open questions.
+- `ANALISIS-alur-utama.md` — a detailed report on the main flow (start, loading, game loop at about 20 ticks per second, input, rendering, MIDI music).
 
-## Yang TIDAK ada di repo ini
+## What's NOT in this repo
 
-- File `.jar` asli game
-- File hasil ekstrak JAR (gambar, musik MIDI, teks, data biner)
-- File Java hasil decompile mentah
+- The original `.jar` game file
+- Files extracted from the JAR (images, MIDI music, text, binary data)
+- Raw decompiled Java files
 
-Itu sengaja tidak di-upload ke repo publik karena game ini masih berhak cipta (THQ, 2008). "Abandonware" bukan status hukum — tidak ada kabar baru bukan berarti tidak ada pemilik hak.
+They are deliberately not uploaded to this public repo because the game is still copyrighted (THQ, 2008). "Abandonware" is not a legal status — no recent news does not mean there is no rights holder.
 
-## Cara mereproduksi analisisnya
+## How to reproduce the analysis
 
-1. Siapkan file JAR game yang kamu miliki sendiri.
-2. Unzip JAR, lalu decompile class Java dengan CFR 0.152 (butuh Java 17).
-3. Bandingkan hasilnya dengan peta di `PETA-SISTEM.md`.
+1. Prepare a copy of the game's JAR file that you own yourself.
+2. Unzip the JAR, then decompile the Java classes with CFR 0.152 (requires Java 17).
+3. Compare your results with the map in `PETA-SISTEM.md`.
 
-## Ringkasan temuan
+## Summary of findings
 
-- 7 class, 13.418 baris hasil decompile: `tribes` (entry), `f` (game utama, 6.680 baris), `b` (logika dunia, 5.805 baris), `e` (loader resource), `c` (loader teks), `d` (splash), `a` (pemutar MIDI).
-- Strategi desa real-time: 2 suku, maksimal 50 villager + 30 bangunan per suku, peta grid maksimal 96x96, 10 peta, 12 tipe bangunan, 4 resource (food, wood, stones, bones) + senjata.
-- 5 bahasa (EN/FR/IT/DE/ES), 7 misi kampanye (tutorial wajib lulus dulu), save 3 slot RecordStore (`t0`/`t1`/`t2`), 5 lagu MIDI dalam satu file.
-- Semua angka balance (biaya, HP, damage) ada di file tabel `pd0`, bukan di kode — langkah berikutnya adalah decode `pd0`.
+- 7 classes, 13,418 lines of decompiled output: `tribes` (entry point), `f` (main game, 6,680 lines), `b` (world logic, 5,805 lines), `e` (resource loader), `c` (text loader), `d` (splash), `a` (MIDI player).
+- Real-time village strategy: 2 tribes, up to 50 villagers + 30 buildings per tribe, a grid map up to 96x96, 10 maps, 12 building types, 4 resources (food, wood, stones, bones) + weapons.
+- 5 languages (EN/FR/IT/DE/ES), 7 campaign missions (the tutorial must be passed first), 3 RecordStore save slots (`t0`/`t1`/`t2`), 5 MIDI songs in a single file.
+- All balance numbers (costs, HP, damage) live in the `pd0` data table, not in the code — the next step is to decode `pd0`.
 
-## Lisensi / disclaimer
+## License / disclaimer
 
-Analisis di repo ini adalah karya tulis sendiri untuk tujuan belajar dan riset. Game Prehistoric Tribes © 2008 THQ Wireless Inc., dikembangkan Gear Games, Ltd. Jangan gunakan repo ini untuk mendistribusikan ulang file game.
+The analysis in this repo is our own written work, for learning and research. The game Prehistoric Tribes © 2008 THQ Wireless Inc., developed by Gear Games, Ltd. Do not use this repo to redistribute game files.
