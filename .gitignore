@@ -1,0 +1,9 @@
+# Jangan upload file game asli atau hasil decompile mentah ke repo publik
+*.jar
+*.jad
+*.class
+extracted/
+decompiled-cfr/
+tools/
+*.muse-github-snapshot-sync.json
+*.muse-github-snapshot-sync.json.tmp-*
