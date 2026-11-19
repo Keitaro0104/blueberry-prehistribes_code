@@ -115,7 +115,7 @@ States (`v` and `Q`, screen numbers, not names):
 - Enemies arrive in waves, not continuously: the attack timer comes from a table (`tabel[214] − tabel[215] × difficulty` + randomness), the number of attackers grows over time (capped by a table), sent in stages every 150 ticks. Warnings: "enemy sighted!", "we're under attack!".
 - The enemy AI plays with the same system: it builds/upgrades/repairs its own buildings, schedules attacks, and assigns roles to its villagers from a per-level table. It is not a one-off script.
 - Player defence: tower, pia center scouts, traps, and the "form up!" and "call to arms!" commands.
-- Win/lose: the texts "you have lost!" / "hurrah! you've won!", with the code trigger `u` = 41 (win) / 90 (lose) on one path, and `b.k()` judging the tribe's condition on another path — the specific conditions for each mission have not been fully mapped.
+- Win/lose: the texts "you have lost!" / "hurrah! you've won!", with the endgame decided by `b.ak()`: win when enemy buildings reach 0 and the mission flag allows it, lose when player population reaches 0 or a key building is lost where the mission requires it; verdict at `u` = 41 (win) / 90 (lose).
 - There are also wild-animal attacks and child theft ("animals have eaten a child!", "the enemy has stolen a child!").
 
 ### Other systems
@@ -147,7 +147,7 @@ States (`v` and `Q`, screen numbers, not names):
 
 ### Campaign / levels
 
-- Campaign: **7 missions**, `q = 0`–`6`. If `q < 5` after a win, advance to the next mission; if `q == 6` (the last one), the game ends and `q` becomes 7.
+- Campaign: 12 level values `q = 0`–`11` (campaign path `q = 0`–`6`, `q = 7` is "the end", `q = 8`–`11` custom-only). If `q < 5` after a win, advance to the next mission; winning `q = 6` moves to `q = 7`.
 - There are 10 map names in the text, but the campaign has only 7 missions — the mapping from names to missions is not proven (possibly the first 7 are campaign and the rest are custom, or the 10 maps are used in rotation; the table in `pd0` has not been decoded yet).
 - Tutorial: its own mode + an "enable tutorial?" option. It is a guided dialogue script in `d0[18]`–`d0[84]` (about 67 pieces): build a store, select a villager, build a hut/kitchen, gather wood/stone, group hotkeys (`7`/`9`), build a gym/armoury/range, "call to arms", happiness, upgrade/repair, fishing, hunting.
 - The campaign is locked until the tutorial is passed: "pass the tutorial first!". With no progress yet (`r == 0`), the game forces the tutorial first.
@@ -187,7 +187,7 @@ States (`v` and `Q`, screen numbers, not names):
 
 1. Exact costs/HP/damage for each building, weapon, and level — needs the `pd0` tables decoded.
 2. The exact mapping of the 10 map names to the 7 campaign missions + tutorial/custom modes.
-3. The specific win/lose conditions for each mission (in `b.k()`).
+3. The specific win/lose conditions for each mission (in `b.ak()`, per-mission flags in record 279).
 4. The exact meaning of each villager task code (0–111) — only some can be guessed from context.
 5. The exact labels for each screen number Q (15, 17, 18, 19, etc.) and the function of the visibility bitmask.
 6. The exact format of each piece in `ma` (simply compressed/encoded tiles, not yet fully decoded).
